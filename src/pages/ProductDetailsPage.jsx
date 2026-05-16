@@ -20,8 +20,8 @@ const ProductDetailsPage = () => {
     try {
       const productData = await getSingleProduct(id);
       const historyData = await getPriceHistory(id);
-      setProduct(productData.product);
-      setHistory(historyData.history || []);
+      setProduct(productData?.product);
+      setHistory(historyData?.history || []);
     } catch (err) {
       console.log(err);
       toast.error("Failed to fetch product details");
@@ -59,6 +59,7 @@ const ProductDetailsPage = () => {
       });
       await fetchData();
       toast.success("Price updated successfully");
+      setPrices({});
     } catch (err) {
       console.log(err);
       toast.error("Failed to update price");
